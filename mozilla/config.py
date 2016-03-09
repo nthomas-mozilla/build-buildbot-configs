@@ -2894,7 +2894,7 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s/'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
-BRANCHES['try']['repo_path'] = 'try'
+BRANCHES['try']['repo_path'] = 'users/nthomas_mozilla.com/mozilla-beta'
 BRANCHES['try']['start_hour'] = [3]
 BRANCHES['try']['start_minute'] = [2]
 # Disable Nightly builds

@@ -7,9 +7,12 @@ SLAVES = deepcopy(pc.SLAVES)
 TRY_SLAVES = deepcopy(pc.TRY_SLAVES)
 
 # Add a small stockpile of AWS dev instances.
-LINUX64_EC2_DEV    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)]
+LINUX64_EC2_DEV    = ['dev-linux64-ec2-%03d' % x for x in range(1, 50)] + ['dev-linux64-ec2-nthomas']
 SLAVES['mock'].extend(LINUX64_EC2_DEV)
 TRY_SLAVES['mock'].extend(LINUX64_EC2_DEV)
+
+# Add the poached mac slave
+TRY_SLAVES['macosx64-lion'].extend(['bld-lion-r5-090'])
 
 LINUX64_AV_EC2_DEV = ['dev-av-linux64-ec2-001']
 SLAVES['linux64-av'].extend(LINUX64_AV_EC2_DEV)
@@ -21,7 +24,7 @@ TRY_SLAVES['win64-rev2'].extend(WIN64_RELOPS)
 # AWS EC2 (b|y)-2008 spot and on-demand staging instances.
 B2008 = ['b-2008-spot-%03d' % x for x in range(990, 1000)] + \
         ['b-2008-ec2-%04d' % x for x in range(990, 1000)] + \
-        ['b-2008-ix-0175']
+        ['b-2008-ix-0175', 'b-2008-ec2-0001']
 Y2008 = ['y-2008-spot-%03d' % x for x in range(990, 1000)] + \
         ['y-2008-ec2-%04d' % x for x in range(990, 1000)]
 SLAVES['win64-rev2'].extend(B2008)

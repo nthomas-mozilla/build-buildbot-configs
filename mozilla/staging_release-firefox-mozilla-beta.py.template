@@ -120,6 +120,7 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/beta',
     'win64': 'browser/config/mozconfigs/win64/beta',
 }
+releaseConfig['source_mozconfig']    = 'browser/config/mozconfigs/linux64/source'
 releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['updateChannels'] = {
     "beta": {
@@ -148,7 +149,7 @@ releaseConfig['updateChannels'] = {
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks'] = True
-releaseConfig['partnerRepackPlatforms'] = releaseConfig['10nPlatforms']
+releaseConfig['partnerRepackPlatforms'] = releaseConfig['l10nPlatforms']
 releaseConfig['partnerRepackConfig'] = {
     'use_mozharness': True,
     'script': 'scripts/desktop_partner_repacks.py',

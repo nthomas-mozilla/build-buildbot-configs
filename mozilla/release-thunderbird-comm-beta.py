@@ -22,29 +22,29 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '44.0b1'
-releaseConfig['appVersion']          = '44.0'
+releaseConfig['version']             = '45.0b2'
+releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_44_0b1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_0b2'
 releaseConfig['partialUpdates']      = {
+
+    '45.0b1': {
+        'appVersion': '45.0',
+        'buildNumber': 3,
+        'baseTag': 'THUNDERBIRD_45_0b1',
+    },
+
+    '44.0b1': {
+        'appVersion': '44.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_44_0b1',
+    },
 
     '43.0b1': {
         'appVersion': '43.0',
         'buildNumber': 3,
         'baseTag': 'THUNDERBIRD_43_0b1',
-    },
-
-    '42.0b1': {
-        'appVersion': '42.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_42_0b1',
-    },
-
-    '42.0b2': {
-        'appVersion': '42.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_42_0b2',
     },
 
 }
@@ -56,7 +56,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '8bfffb4cf500',
+        'revision': '9e83eb98346f',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -68,8 +68,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '40e457de9ce8',
-        'relbranch': None,
+        'revision': 'THUNDERBIRD450b2_2016020915_RELBRANCH',
+        'relbranch': 'THUNDERBIRD450b2_2016020915_RELBRANCH',
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -124,7 +124,7 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/release'
+releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/source'
 releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['updateChannels'] = {
     "beta": {

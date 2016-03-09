@@ -32,6 +32,9 @@ BRANCHES = {
     'comm-esr38': {
         'gecko_version': 38
     },
+    'comm-esr45': {
+        'gecko_version': 45
+    },
     'try-comm-central': {
         'coallesce_jobs': False
     },
@@ -141,6 +144,17 @@ XPCSHELL = [
         'script_maxtime': 7200,
     }),
 ]
+XPCSHELL_TWO_CHUNKS = [
+    ('xpcshell', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--xpcshell-suite', 'xpcshell',
+                       '--cfg', 'unittests/thunderbird_extra.py'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
 MOZMILL = [
     ('mozmill', {
         'use_mozharness': True,
@@ -156,6 +170,7 @@ MOZMILL = [
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOZMILL + XPCSHELL,
     'debug_unittest_suites': MOZMILL + XPCSHELL,
+    'debug_unittest_suites_two_chunks': MOZMILL + XPCSHELL_TWO_CHUNKS,
 }
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
@@ -170,7 +185,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites_two_chunks'][:],
             'suite_config': {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -191,7 +206,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites_two_chunks'][:],
             'suite_config': {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -386,6 +401,11 @@ BRANCHES['comm-esr38']['pgo_strategy'] = None
 BRANCHES['comm-esr38']['repo_path'] = "releases/comm-esr38"
 BRANCHES['comm-esr38']['moz_repo_path'] = "releases/mozilla-esr38"
 
+######## comm-esr45
+BRANCHES['comm-esr45']['pgo_strategy'] = None
+BRANCHES['comm-esr45']['repo_path'] = "releases/comm-esr45"
+BRANCHES['comm-esr45']['moz_repo_path'] = "releases/mozilla-esr45"
+
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
 BRANCHES['try-comm-central']['moz_repo_path'] = "mozilla-central"
@@ -476,6 +496,17 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     # like Thunderbird
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
     branch['mozharness_archiver_rev'] = 'default'
+
+# Cypress is the m-c in c-c repo, so set some specifics
+BRANCHES['cypress']['mozharness_archiver_repo_path'] = '%(repo_path)s'
+if 'mozharness_archiver_rev' in BRANCHES['cypress']:
+    # Without this retriggers wouldn't use the repo rev for mozharness.
+    del BRANCHES['cypress']['mozharness_archiver_rev']
+BRANCHES['cypress']['script_repo_manifest'] = \
+    "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+    "testing/mozharness/mozharness.json"
+BRANCHES['cypress']['pgo_strategy'] = None
+
 
 if __name__ == "__main__":
     import sys

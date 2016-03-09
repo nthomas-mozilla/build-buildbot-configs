@@ -21,29 +21,47 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.6.0esr'
-releaseConfig['appVersion']          = '38.6.0'
+releaseConfig['version']             = '38.7.0esr'
+releaseConfig['appVersion']          = '38.7.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_38_6_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_38_7_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '38.5.2esr': {
-        'appVersion': '38.5.2',
+    '38.6.1esr': {
+        'appVersion': '38.6.1',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_38_5_2esr',
+        'baseTag': 'FIREFOX_38_6_1esr',
+    },
+
+    '38.4.0esr': {
+        'appVersion': '38.4.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_38_4_0esr',
+    },
+
+    '38.2.1esr': {
+        'appVersion': '38.2.1',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_38_2_1esr',
+    },
+
+    '38.3.0esr': {
+        'appVersion': '38.3.0',
+        'buildNumber': 2,
+        'baseTag': 'FIREFOX_38_3_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.6.0esrpre'
+releaseConfig['nextAppVersion']      = '38.7.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '9632375c6aac',
+        'revision': 'dd4b90de8fd3',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -75,6 +93,9 @@ releaseConfig['talosTestPlatforms']  = ()
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
 releaseConfig['enableUnittests']     = False
+
+# SDK
+releaseConfig['packageSDK']          = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']

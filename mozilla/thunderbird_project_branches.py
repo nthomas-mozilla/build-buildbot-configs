@@ -2,6 +2,11 @@
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     #####  TWIGS aka RENTABLE BRANCHES
+    # Booked for Thunderbird
+    'cypress': {
+        # mozilla_dir is blank
+        'mozilla_dir': '',
+    },
 }
 
 # All is the default

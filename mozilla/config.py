@@ -75,8 +75,10 @@ GLOBAL_VARS = {
         'win64-debug': {},
         'android-api-9': {},
         'android-api-11': {},
+        'android-api-15': {},
         'android-x86': {},
         'android-api-11-debug': {},
+        'android-api-15-debug': {},
         'android-api-9-debug': {},
     },
     'pgo_strategy': None,
@@ -94,10 +96,6 @@ GLOBAL_VARS = {
 
     # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
     'branch_projects': ['spidermonkey_tier_1'],
-
-    # if true, this branch will get bundled and uploaded to ftp.m.o for users
-    # to download and thereby accelerate their cloning
-    'enable_weekly_bundle': False,
 
     'hash_type': 'sha512',
     'updates_enabled': False,
@@ -449,6 +447,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -474,6 +473,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -549,6 +549,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/tsan.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -574,6 +575,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -649,6 +651,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -674,6 +677,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -749,6 +753,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -774,6 +779,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -930,6 +936,7 @@ PLATFORM_VARS = {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -1206,6 +1213,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -1251,6 +1259,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -1312,6 +1321,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -1336,6 +1346,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -1346,6 +1357,7 @@ PLATFORM_VARS = {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -1403,6 +1415,7 @@ PLATFORM_VARS = {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -1499,6 +1512,66 @@ PLATFORM_VARS = {
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
+        },
+        'win32-st-an-debug': {
+            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'reboot_command': [
+                'c:/mozilla-build/python27/python', '-u',
+                'scripts/external_tools/count_and_reboot.py',
+                '-f', '../reboot_count.txt','-n', '1', '-z'
+            ],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_windows_32_builds.py',
+                    '--custom-build-variant-cfg', 'stat-and-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(7.5 * 3600),
+            },
+
+            'enable_nightly': False,
+            'product_name': 'firefox',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'WINNT 5.2 %(branch)s debug static analysis',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'browser/config/mozconfigs/win32/debug-static-analysis',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'download_symbols': False,
+            'enable_installer': False,
+            'packageTests': False,
+            'try_by_default': False,
+            'build_space': 9,
+            'slaves': SLAVES['win64-rev2'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'firefox',
+            'stage_platform': 'win32-st-an-debug',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
+            },
+            'enable_unittests': False,
+            'enable_checktests': False,
+            'enable_build_analysis': False,
+            'updates_enabled': False,
+            'create_partial': False,
+            'test_pretty_names': False,
+            'l10n_check_test': False,
+            'talos_masters': None,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/clang.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
+            # The status of this build doesn't affect the last good revision
+            # algorithm for nightlies
+            'consider_for_nightly': False,
         },
         'win64-debug': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -1602,7 +1675,9 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1634,6 +1709,7 @@ PLATFORM_VARS = {
             'multi_locale_config_platform': 'android',
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'update_platform': 'Android_arm-eabi-gcc3',
             'updates_enabled': False,
         },
@@ -1687,7 +1763,9 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1719,6 +1797,95 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'multi_locale_config_platform': 'android',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
+            'update_platform': 'Android_arm-eabi-gcc3',
+            'updates_enabled': False,
+        },
+        'android-api-15': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'api-15',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
+            'product_name': 'firefox',
+            'unittest_platform': 'android-api-15-opt',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android armv7 API 15+ %(branch)s',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-15/nightly',
+            'mobile_dir': 'mobile/android',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 16,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64-android',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
+                              'ccache', 'zip',
+                              'java-1.7.0-openjdk-devel', 'zlib-devel',
+                              'glibc-static', 'openssh-clients', 'mpfr',
+                              "gcc472_0moz1", "gcc473_0moz1", 'wget', 'glibc.i686',
+                              'libstdc++.i686', 'zlib.i686',
+                              'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SHIP_LICENSED_FONTS': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/opt/local/bin:/tools/python/bin:/tools/buildbot/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home/',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-api-15",
+            'stage_product': 'mobile',
+            'post_upload_include_platform': True,
+            'is_mobile_l10n': True,
+            'l10n_chunks': 5,
+            'multi_locale': True,
+            'multi_locale_script': 'scripts/multil10n.py',
+            'multi_locale_config_platform': 'android',
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'update_platform': 'Android_arm-eabi-gcc3',
             'updates_enabled': False,
         },
@@ -1769,7 +1936,9 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1798,6 +1967,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-x86/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
         'android-api-9-debug': {
@@ -1850,7 +2020,9 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1877,6 +2049,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
         'android-api-11-debug': {
@@ -1930,7 +2103,9 @@ PLATFORM_VARS = {
                 ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1957,6 +2132,90 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
+            'updates_enabled': False,
+        },
+        'android-api-15-debug': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_android_64_builds.py',
+                    '--custom-build-variant-cfg', 'api-15-debug',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
+            'enable_nightly': False,
+            'product_name': 'firefox',
+            'unittest_platform': 'android-api-15-debug',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'Android armv7 API 15+ %(branch)s debug',
+            'mozconfig': 'in_tree',
+            'src_mozconfig': 'mobile/android/config/mozconfigs/android-api-15/debug',
+            'mobile_dir': 'mobile/android',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 14,
+            'upload_symbols': True,
+            'download_symbols': False,
+            'packageTests': True,
+            'updates_enabled': False,
+            'create_partial': False,
+            'slaves': SLAVES['mock'],
+            'platform_objdir': OBJDIR,
+            'enable_ccache': True,
+            'enable_shared_checkouts': True,
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'use_mock': True,
+            'mock_target': 'mozilla-centos6-x86_64-android',
+            'mock_packages': ['autoconf213', 'mozilla-python27-mercurial',
+                              'ccache', 'zip', "gcc472_0moz1", "gcc473_0moz1",
+                              'java-1.7.0-openjdk-devel', 'zlib-devel',
+                              'glibc-static', 'openssh-clients', 'mpfr',
+                              'wget', 'glibc.i686', 'libstdc++.i686',
+                              'zlib.i686', 'freetype-2.3.11-6.el6_1.8.x86_64', 'ant', 'ant-apache-regexp'],
+            'mock_copyin_files': [
+                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
+                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
+                ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/builds/mozilla-api.key', '/builds/mozilla-api.key'),
+                ('/builds/mozilla-fennec-geoloc-api.key', '/builds/mozilla-fennec-geoloc-api.key'),
+                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
+                ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
+            ],
+            'env': {
+                'DISPLAY': ':2',
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
+                'SYMBOL_SERVER_USER': 'ffxbld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
+                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'SHIP_LICENSED_FONTS': '1',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+                'LC_ALL': 'C',
+                'PATH': '/tools/buildbot/bin:/usr/local/bin:/bin:/usr/bin',
+            },
+            'enable_opt_unittests': False,
+            'talos_masters': None,
+            'unittest_masters': GLOBAL_VARS['unittest_masters'],
+            'stage_platform': "android-api-15-debug",
+            'stage_product': 'mobile',
+            'post_upload_include_platform': True,
+            'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
 }
@@ -2147,6 +2406,25 @@ BRANCHES = {
             'win64-debug': {},
         },
     },
+    'mozilla-esr45': {
+        'merge_builds': False,
+        'lock_platforms': True,
+        'gecko_version': 45,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux64-asan': {},
+            'linux64-av': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64-debug': {},
+        },
+    },
     'mozilla-b2g44_v2_5': {
         'merge_builds': False,
         'branch_projects': [],
@@ -2169,6 +2447,7 @@ BRANCHES = {
             'linux64-sh-haz': {},
             'linux64-cc': {},
             'linux64-tsan': {},
+            'win32-st-an-debug': {},
         },
     },
 }
@@ -2189,9 +2468,6 @@ for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
-            continue
-        # Don't override something that's set
-        elif key in ('enable_weekly_bundle','branch_projects',) and key in BRANCHES[branch]:
             continue
         # If the key is already set then we won't override with GLOBAL_VARS
         # The "platforms" key is handle separatedely (see next for loop)
@@ -2266,7 +2542,6 @@ for branch in BRANCHES.keys():
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['mozilla-central']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable PGO Builds on this branch
@@ -2310,14 +2585,14 @@ BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTR
 BRANCHES['mozilla-central']['platforms']['android-x86']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['updates_enabled'] = True
-BRANCHES['mozilla-central']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
-BRANCHES['mozilla-central']['platforms']['android-api-11']['updates_enabled'] = True
+BRANCHES['mozilla-central']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
+BRANCHES['mozilla-central']['platforms']['android-api-15']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-central']['platforms']['android-api-11']['nightly_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-central']['platforms']['android-api-15']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 
@@ -2325,7 +2600,6 @@ BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlenam
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
 BRANCHES['mozilla-release']['update_channel'] = 'release'
 BRANCHES['mozilla-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-release']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-release']['start_hour'] = [3]
 BRANCHES['mozilla-release']['start_minute'] = [2]
 # Enable PGO Builds on this branch
@@ -2353,13 +2627,14 @@ BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
+# TODO - remove android-api-11 line when gecko 46 reaches m-r
 BRANCHES['mozilla-release']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
+BRANCHES['mozilla-release']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
 BRANCHES['mozilla-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
-BRANCHES['mozilla-beta']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-beta']['update_channel'] = 'beta'
 BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
@@ -2394,20 +2669,52 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-BRANCHES['mozilla-beta']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
+BRANCHES['mozilla-beta']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-api-11']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-15']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-9-debug']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-api-11-debug']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
+### Release Promotion
+BRANCHES['mozilla-beta']['enable_release_promotion'] = True
+# used by process/release.py
+BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-beta']['bouncer_submitter_config'] = "releases/bouncer_firefox_beta.py"
+BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
+BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = "releases/postrelease_beta.py"
+BRANCHES['mozilla-beta']['updates_config'] = "releases/updates_date.py"
+BRANCHES['mozilla-beta']['update_verify_chunks'] = 6
+BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
+BRANCHES['mozilla-beta']['stage_product'] = {
+    'firefox': 'firefox',
+    'fennec': 'mobile'
+}
+BRANCHES['mozilla-beta']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
+# used by releasetasks
+BRANCHES['mozilla-beta']['bouncer_enabled'] = True
+BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
+BRANCHES['mozilla-beta']['push_to_releases_automatic'] = False
+BRANCHES['mozilla-beta']['release_channels'] = ("beta",)
+BRANCHES['mozilla-beta']['beetmover_buckets'] = {
+    "firefox": "net-mozaws-prod-delivery-firefox",
+    # TODO - add fennec support
+    # 'fennec': 'net-mozaws-prod-delivery-archive',
+}
+BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+###
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-aurora']['start_hour'] = [0]
 BRANCHES['mozilla-aurora']['start_minute'] = [40]
 BRANCHES['mozilla-aurora']['periodic_start_hours'] = range(1, 24, 6)
@@ -2450,8 +2757,8 @@ BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['updates_enabled'] = True
-BRANCHES['mozilla-aurora']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
-BRANCHES['mozilla-aurora']['platforms']['android-api-11']['updates_enabled'] = True
+BRANCHES['mozilla-aurora']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
+BRANCHES['mozilla-aurora']['platforms']['android-api-15']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['updates_enabled'] = True
 # aurora nightlies should use our nightly signing server
@@ -2462,12 +2769,10 @@ BRANCHES['mozilla-aurora']['platforms']['win64']['nightly_signing_servers'] = 'n
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-
 ######## mozilla-esr38
 BRANCHES['mozilla-esr38']['repo_path'] = 'releases/mozilla-esr38'
 BRANCHES['mozilla-esr38']['update_channel'] = 'nightly-esr38'
 BRANCHES['mozilla-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr38']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-esr38']['start_hour'] = [0]
 BRANCHES['mozilla-esr38']['start_minute'] = [15]
 BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
@@ -2491,12 +2796,38 @@ BRANCHES['mozilla-esr38']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr38']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr38']['enable_valgrind'] = False
 BRANCHES['mozilla-esr38']['enabled_products'] = ['firefox']
-
+######## mozilla-esr45
+BRANCHES['mozilla-esr45']['repo_path'] = 'releases/mozilla-esr45'
+BRANCHES['mozilla-esr45']['update_channel'] = 'nightly-esr45'
+BRANCHES['mozilla-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr45']['start_hour'] = [0]
+BRANCHES['mozilla-esr45']['start_minute'] = [15]
+BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr45']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr45']['unittest_build_space'] = 6
+BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
+# L10n configuration
+BRANCHES['mozilla-esr45']['enable_l10n'] = False
+BRANCHES['mozilla-esr45']['enable_l10n_onchange'] = False
+BRANCHES['mozilla-esr45']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64', 'win64']
+BRANCHES['mozilla-esr45']['l10nDatedDirs'] = True
+BRANCHES['mozilla-esr45']['l10n_tree'] = 'fxesr45'
+BRANCHES['mozilla-esr45']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr45'
+BRANCHES['mozilla-esr45']['enable_nightly'] = True
+BRANCHES['mozilla-esr45']['enable_nightly_everytime'] = False
+BRANCHES['mozilla-esr45']['updates_enabled'] = False
+BRANCHES['mozilla-esr45']['create_partial'] = False
+BRANCHES['mozilla-esr45']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr45']['enable_hsts_update'] = True
+BRANCHES['mozilla-esr45']['enable_hpkp_update'] = True
+BRANCHES['mozilla-esr45']['enable_valgrind'] = False
+BRANCHES['mozilla-esr45']['enabled_products'] = ['firefox']
 ######## mozilla-b2g44_v2_5
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = 'releases/mozilla-b2g44_v2_5'
 BRANCHES['mozilla-b2g44_v2_5']['update_channel'] = 'nightly-b2g44-2.5'
 BRANCHES['mozilla-b2g44_v2_5']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-b2g44_v2_5']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-b2g44_v2_5']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [3]
 BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
@@ -2525,7 +2856,6 @@ BRANCHES['mozilla-b2g44_v2_5']['enabled_products'] = ['firefox']
 BRANCHES['b2g-ota']['repo_path'] = 'releases/b2g-ota'
 BRANCHES['b2g-ota']['update_channel'] = 'b2g-ota'
 BRANCHES['b2g-ota']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['b2g-ota']['enable_weekly_bundle'] = False
 BRANCHES['b2g-ota']['enable_perproduct_builds'] = True
 BRANCHES['b2g-ota']['start_hour'] = [3]
 BRANCHES['b2g-ota']['start_minute'] = [45]
@@ -2594,12 +2924,13 @@ BRANCHES['try']['platforms']['linux64-sh-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-br-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-cc']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
+BRANCHES['try']['platforms']['win32-st-an-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64-st-an-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android-api-9']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-api-11']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-15']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-9-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-api-11-debug']['slaves'] = TRY_SLAVES['mock']
+BRANCHES['try']['platforms']['android-api-15-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
@@ -2643,8 +2974,12 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
     if 'android-api-9' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9-' + branch
+    # TODO - project branch could be based on any gecko num. we should remove this once api-11 is
+    # gone from all release branches
     if 'android-api-11' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11-' + branch
+    if 'android-api-15' in BRANCHES[branch]['platforms']:
+        BRANCHES[branch]['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15-' + branch
     if 'android-x86' in BRANCHES[branch]['platforms']:
         BRANCHES[branch]['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86-' + branch
     if 'linux64' in BRANCHES[branch]['platforms']:
@@ -2690,8 +3025,6 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % name
         PROJECTS[branch_project_name] = project
 
-PROJECTS["spidermonkey_tier_1__alder"]["enable_schedulers"] = False
-
 # ant test on try
 ## ant rides the trains (Bug 971841)
 # for name, branch in items_before(BRANCHES, 'gecko_version', 30):
@@ -2717,7 +3050,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
 
 # Only test pretty names on train branches, not m-c or project branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr38"):
+               "mozilla-esr38", "mozilla-esr45"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
@@ -2730,8 +3063,9 @@ for b in ('b2g-inbound',):
 # END B2G's INBOUND
 
 ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
-# enable mozharness desktop builds on m-a, m-c, and m-c related branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', ma_gecko_version):
+mb_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
+# enable mozharness desktop builds on m-b, m-a, m-c, and m-c related branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mb_gecko_version):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
@@ -2743,6 +3077,18 @@ for name, branch in items_before(BRANCHES, 'gecko_version', ma_gecko_version):
             # we don't want to disable the branch level item: "desktop_mozharness_builds_enabled"
             # we do want to remove the platform level item: "mozharness_desktop_build"
             del branch['platforms'][platform]['mozharness_desktop_build']
+
+# disable api-11 mobile builds on >= 46 based branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
+    for platform in branch['platforms'].keys():
+        if 'api-11' in platform:
+            del branch['platforms'][platform]
+
+# disable api-15 mobile builds on < 46 based branches
+for name, branch in items_before(BRANCHES, 'gecko_version', 46):
+    for platform in branch['platforms'].keys():
+        if 'api-15' in platform:
+            del branch['platforms'][platform]
 
 if __name__ == "__main__":
     import sys

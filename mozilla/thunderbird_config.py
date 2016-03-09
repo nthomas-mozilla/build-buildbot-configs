@@ -68,10 +68,6 @@ GLOBAL_VARS.update({
     'enable_valgrind': False,
     'valgrind_platforms': ('linux', 'linux64'),
 
-    # if true, this branch will get bundled and uploaded to ftp.m.o for users
-    # to download and thereby accelerate their cloning
-    'enable_weekly_bundle': False,
-
     'hash_type': 'sha512',
     'updates_enabled': False,
     'create_partial': False,
@@ -143,7 +139,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'enable_build_analysis': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
@@ -239,7 +235,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'enable_build_analysis': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
@@ -329,7 +325,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/macosx64/releng.manifest',
@@ -372,7 +368,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
@@ -455,6 +451,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -499,6 +496,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
@@ -537,6 +535,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -560,6 +559,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
@@ -651,6 +651,9 @@ BRANCHES = {
     'comm-esr38': {
         'gecko_version': 38,
     },
+    'comm-esr45': {
+        'gecko_version': 45,
+    },
     'try-comm-central': {
     },
 }
@@ -668,9 +671,6 @@ for branch in BRANCHES.keys():
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
         elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
-            continue
-        # Don't override something that's set
-        elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
             continue
         else:
             BRANCHES[branch][key] = deepcopy(value)
@@ -745,7 +745,6 @@ BRANCHES['comm-central']['skip_blank_repos'] = True
 BRANCHES['comm-central']['call_client_py'] = True
 BRANCHES['comm-central']['repo_path'] = 'comm-central'
 BRANCHES['comm-central']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['comm-central']['enable_weekly_bundle'] = True
 BRANCHES['comm-central']['start_hour'] = [3]
 BRANCHES['comm-central']['start_minute'] = [2]
 # Enable unit tests
@@ -788,7 +787,6 @@ BRANCHES['comm-esr38']['update_channel'] = 'nightly-esr38'
 BRANCHES['comm-esr38']['skip_blank_repos'] = True
 BRANCHES['comm-esr38']['call_client_py'] = True
 BRANCHES['comm-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['comm-esr38']['enable_weekly_bundle'] = True
 BRANCHES['comm-esr38']['start_hour'] = [3]
 BRANCHES['comm-esr38']['start_minute'] = [2]
 # Enable unit tests
@@ -813,13 +811,43 @@ BRANCHES['comm-esr38']['enable_blocklist_update'] = True
 BRANCHES['comm-esr38']['file_update_on_closed_tree'] = False
 BRANCHES['comm-esr38']['enable_valgrind'] = False
 
+######## comm-esr45
+BRANCHES['comm-esr45']['repo_path'] = 'releases/comm-esr45'
+BRANCHES['comm-esr45']['moz_repo_path'] = 'releases/mozilla-esr45'
+BRANCHES['comm-esr45']['update_channel'] = 'nightly-esr45'
+BRANCHES['comm-esr45']['skip_blank_repos'] = True
+BRANCHES['comm-esr45']['call_client_py'] = True
+BRANCHES['comm-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-esr45']['start_hour'] = [3]
+BRANCHES['comm-esr45']['start_minute'] = [2]
+# Enable unit tests
+BRANCHES['comm-esr45']['enable_mac_a11y'] = True
+BRANCHES['comm-esr45']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['comm-esr45']['enable_l10n'] = False
+BRANCHES['comm-esr45']['enable_l10n_onchange'] = False
+BRANCHES['comm-esr45']['l10nNightlyUpdate'] = False
+BRANCHES['comm-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                            'macosx64']
+BRANCHES['comm-esr45']['l10nDatedDirs'] = True
+BRANCHES['comm-esr45']['l10n_tree'] = 'tbrel'
+BRANCHES['comm-esr45']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr45'
+BRANCHES['comm-esr45']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr45' % (GLOBAL_VARS['hgurl'])
+BRANCHES['comm-esr45']['enable_nightly'] = True
+BRANCHES['comm-esr45']['updates_enabled'] = True
+BRANCHES['comm-esr45']['create_partial'] = True
+BRANCHES['comm-esr45']['enable_blocklist_update'] = True
+BRANCHES['comm-esr45']['file_update_on_closed_tree'] = False
+BRANCHES['comm-esr45']['enable_valgrind'] = False
+
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
 BRANCHES['comm-beta']['skip_blank_repos'] = True
 BRANCHES['comm-beta']['call_client_py'] = True
 BRANCHES['comm-beta']['repo_path'] = 'releases/comm-beta'
 BRANCHES['comm-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
-BRANCHES['comm-beta']['enable_weekly_bundle'] = True
 BRANCHES['comm-beta']['update_channel'] = 'beta'
 BRANCHES['comm-beta']['start_hour'] = [3]
 BRANCHES['comm-beta']['start_minute'] = [2]
@@ -856,7 +884,6 @@ BRANCHES['comm-aurora']['skip_blank_repos'] = True
 BRANCHES['comm-aurora']['call_client_py'] = True
 BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
 BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['comm-aurora']['enable_weekly_bundle'] = True
 BRANCHES['comm-aurora']['start_hour'] = [0]
 BRANCHES['comm-aurora']['start_minute'] = [40]
 # Enable unit tests
@@ -1019,6 +1046,13 @@ for branch in branches:
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
 
+# Only test pretty names on train branches, not c-c.
+for branch in branches:
+    if branch != "comm-central":
+        for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
+            if platform in BRANCHES[branch]['platforms']:
+                BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
+
 # This does not currently affect Thunderbird builds since mozharness is not
 # enabled yet.
 
@@ -1032,6 +1066,15 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     # like Thunderbird
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
     branch['mozharness_archiver_rev'] = 'default'
+
+# Cypress is the m-c in c-c repo, so set some specifics
+BRANCHES['cypress']['mozharness_archiver_repo_path'] = '%(repo_path)s'
+BRANCHES['cypress']['pgo_strategy'] = None
+# Enable unit tests
+BRANCHES['cypress']['enable_mac_a11y'] = True
+BRANCHES['cypress']['unittest_build_space'] = 6
+BRANCHES['cypress']['mozilla_srcdir'] = None
+
 
 if __name__ == "__main__":
     import sys

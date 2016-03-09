@@ -20,12 +20,18 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '44.0'
-releaseConfig['appVersion']          = '44.0'
+releaseConfig['version']             = '45.0'
+releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 2
-releaseConfig['baseTag']             = 'FIREFOX_44_0'
+releaseConfig['baseTag']             = 'FIREFOX_45_0'
 releaseConfig['partialUpdates']      = {
+
+    '43.0.1': {
+        'appVersion': '43.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_43_0_1',
+    },
 
     '42.0': {
         'appVersion': '42.0',
@@ -33,10 +39,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_42_0',
     },
 
-    '41.0.2': {
-        'appVersion': '41.0.2',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_41_0_2',
+    '44.0.2': {
+        'appVersion': '44.0.2',
+        'buildNumber': 3,
+        'baseTag': 'FIREFOX_44_0_2',
     },
 
     '43.0.4': {
@@ -45,15 +51,9 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_43_0_4',
     },
 
-    '44.0': {
-        'appVersion': '44.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_44_0',
-    },
-
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/44.0/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/45.0/whatsnew/?oldversion=%OLD_VERSION%'
 
 releaseConfig['HACK_first_released_version'] = {'win64': "42.0"}
 
@@ -65,7 +65,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '45a3e4181f46',
+        'revision': '2ee61020e89c',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -101,6 +101,9 @@ releaseConfig['talosTestPlatforms']  = ()
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
 releaseConfig['enableUnittests']     = False
+
+# SDK
+releaseConfig['packageSDK']          = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']

@@ -24,7 +24,6 @@ GLOBAL_VARS.update({
     'platforms': {
         'macosx64-mulet': {},
         'win32-mulet': {},
-        'linux64-b2g-haz': {},
         'nexus-4': {},
         'nexus-4_eng': {},
         'nexus-5-l': {},
@@ -458,36 +457,6 @@ PLATFORM_VARS = {
         'enable_dep': False,
         'maxTime': 6 * 3600,
     },
-    'linux64-b2g-haz': {
-        'mozharness_config': {
-            'script_name': 'scripts/hazard_build.py',
-            'extra_args': [
-                '--target', 'emulator-jb',
-                '--config-file', 'b2g/releng-emulator.py',
-                '--b2g-config-dir', 'emulator-jb',
-                '--config-file', 'hazards/common.py',
-                '--config-file', 'hazards/build_b2g.py',
-            ],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'maxTime': 6 * 3600,
-        'try_by_default': True,
-        'consider_for_nightly': False,
-        'mock_target': 'mozilla-centos6-x86_64',
-        'reboot_command': [
-            '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-            '-f', '../reboot_count.txt', '-n', '1', '-z'
-        ],
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-    },
     'flame-kk': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -784,7 +753,6 @@ BRANCHES = {
         'b2g_version': (2, 5, 0),
         'lock_platforms': True,
         'platforms': {
-            'linux64-b2g-haz': {},
             'emulator': {},
             'emulator-debug': {},
             'emulator-l': {},
@@ -798,7 +766,6 @@ BRANCHES = {
         'b2g_version': (2, 6, 0),
         'lock_platforms': True,
         'platforms': {
-            'linux64-b2g-haz': {},
             'emulator': {},
             'emulator-debug': {},
             'flame-kk': {},
@@ -808,7 +775,6 @@ BRANCHES = {
     'try': {
         'lock_platforms': True,
         'platforms': {
-            'linux64-b2g-haz': {},
             'macosx64-mulet': {},
             'win32-mulet': {},
             'linux64_graphene': {},
@@ -845,11 +811,13 @@ for branch in BRANCHES.keys():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
-        # Don't override something that's set
-        elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
-            continue
         else:
             BRANCHES[branch][key] = deepcopy(value)
+
+        # bug 1218589 - Enable nightly mozilla-central builds of graphene     
+        if key == 'platforms' and branch == 'mozilla-central':
+            graphene = {'linux64_graphene': {}, 'macosx64_graphene': {}, 'win64_graphene': {}}
+            BRANCHES[branch][key].update(graphene)
 
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
@@ -914,7 +882,7 @@ for branch in BRANCHES.keys():
 ######## remove most B2G builds from cedar
 for platform in ('nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng',
                  'flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug',
-                 'linux64-b2g-haz', 'macosx64-mulet', 'win32-mulet'):
+                 'macosx64-mulet', 'win32-mulet'):
     if platform in BRANCHES['cedar']['platforms']:
         del BRANCHES['cedar']['platforms'][platform]
 
@@ -933,7 +901,6 @@ BRANCHES['mozilla-central']['start_hour'] = [3, 15]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
 BRANCHES['mozilla-central']['periodic_start_minute'] = 30
-BRANCHES['mozilla-central']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -942,8 +909,14 @@ BRANCHES['mozilla-central']['platforms']['nexus-5-l_eng']['enable_nightly'] = Tr
 BRANCHES['mozilla-central']['platforms']['nexus-5-l_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
+# bug 1218589 - Enable nightly mozilla-central builds of graphene     
+BRANCHES['mozilla-central']['platforms']['linux64_graphene']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['macosx64_graphene']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['win64_graphene']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['linux64_graphene']['slaves'] = SLAVES['mock']
+BRANCHES['mozilla-central']['platforms']['macosx64_graphene']['slaves'] = SLAVES['macosx64-lion']
+BRANCHES['mozilla-central']['platforms']['win64_graphene']['slaves'] = SLAVES['win64-rev2']
+
 
 ######## b2g-ota
 # This is a path, relative to HGURL, where the repository is located
@@ -954,7 +927,6 @@ BRANCHES['b2g-ota']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['b2g-ota']['start_hour'] = [0]
 BRANCHES['b2g-ota']['start_minute'] = [45]
 BRANCHES['b2g-ota']['periodic_start_minute'] = 30
-BRANCHES['b2g-ota']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['b2g-ota']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['emulator']['enable_nightly'] = True
@@ -970,7 +942,6 @@ BRANCHES['mozilla-b2g44_v2_5']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [0]
 BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
 BRANCHES['mozilla-b2g44_v2_5']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator']['enable_nightly'] = False
@@ -992,7 +963,6 @@ BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
-BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_graphene']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_graphene']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
@@ -1075,6 +1045,20 @@ for branch in B2GTWIGS:
             continue
         if platform in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms'][platform]
+
+# Bug 1250953 - Disable ICS emulator builds/tests on trunk
+for branch in BRANCHES.keys():
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if branch in ['mozilla-b2g44_v2_5', 'try', 'b2g-ota']:
+            continue
+        if platform in ['emulator', 'emulator-debug']:
+            del BRANCHES[branch]['platforms'][platform]
+
+# Bug 1253630 - Turn off B2G device builds on trunk branches (buildbot only)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
+    for platform in BRANCHES[name]['platforms'].keys():
+        if platform in ['flame-kk', 'flame-kk_eng', 'nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng']:
+            del BRANCHES[name]['platforms'][platform]
 
 if __name__ == "__main__":
     import sys

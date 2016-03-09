@@ -17,10 +17,10 @@ SLAVES = {
     'win64_vm': {},
 }
 
-for i in range(1, 153):  # XP slaves from 153 to 173 moved to Win 7 pool // Bug 1226729 // Bug 1239785
+for i in range(1, 133):  # XP slaves from 153 to 173 moved to Win 7 pool // Bug 1226729 // Bug 1239785
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1, 254):   # Move some XP test machines to the Windows 7 pool from 234 to 253 // Bug 1226729 // Bug 1239785
+for i in range(1, 282):   # Move some XP test machines to the Windows 7 pool from 234 to 253 // Bug 1226729 // Bug 1239785 // Bug 1252258
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
     SLAVES['win7-all']['t-w732-ix-%03i' % i] = {}
 
@@ -30,15 +30,15 @@ for i in range(1, 400):
 for i in range(1, 102) + range(103, 195):  # Omit 102 for win10 // Bug 1191481
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
-for i in range(1, 11):
+for i in range(1, 3) + range(11, 12):  # Bug 1252258
     SLAVES['win10']['t-w1064-ix-%04i' % i] = {}
 for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
     SLAVES['win10']['t-w864-ix-%03i' % i] = {}
 
-for i in range(1, 34) + range(35, 93) + range(95, 153) + range(154, 166):  # slaves 0034&0093&0094&0153 have been decommed
+for i in range(1, 34) + range(35, 93) + range(95, 147) + range(164, 166):  # slaves 0034&0093&0094&0153 have been decommed
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
-for i in range(1, 3) + range(4, 8) + range(41, 51):   #slaves decomm bug 1226180
+for i in range(1, 3) + range(7, 8):   #slaves decomm bug 1226180
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(1, 201):
@@ -50,22 +50,13 @@ for i in range(22, 910):
         'ssl_port': '31%03i' % i,
     }
 
-for i in range(1, 100) + range(300, 360):
-    SLAVES['ubuntu32_vm']['tst-linux32-ec2-%03i' % i] = {}
-
 for i in range(1, 800) + range(1000, 1100):
     SLAVES['ubuntu32_vm']['tst-linux32-spot-%03i' % i] = {}
 
-for i in range(1, 100) + range(301, 400):
-    SLAVES['ubuntu64_vm']['tst-linux64-ec2-%03i' % i] = {}
-
-for i in range(1, 20):
-    SLAVES['ubuntu64_vm_large']['tst-emulator64-ec2-%03i' % i] = {}
-
-for i in range(1, 200) + range(301, 500) + range(601, 800) + range(901, 1100):
+for i in range(1, 200) + range(301, 500) + range(601, 800) + range(901, 1100) + range(1201, 1452):  # Bug 1252248
     SLAVES['ubuntu64_vm_large']['tst-emulator64-spot-%03i' % i] = {}
 
-for i in range(1, 2100):
+for i in range(1, 2601):  # Bug 1252248
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
 
 for i in range(1, 70):
@@ -121,6 +112,10 @@ BRANCHES = {
     'mozilla-esr38': {
         'tinderbox_tree': 'Mozilla-Esr38',
         'mobile_tinderbox_tree': 'Mozilla-Esr38',
+    },
+    'mozilla-esr45': {
+        'tinderbox_tree': 'Mozilla-Esr45',
+        'mobile_tinderbox_tree': 'Mozilla-Esr45',
     },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',

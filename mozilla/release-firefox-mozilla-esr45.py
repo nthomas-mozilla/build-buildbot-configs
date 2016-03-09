@@ -5,11 +5,12 @@
 # editing the .template instead. This file should only by edited directly if
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
+
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification
 releaseConfig['AllRecipients']       = ['<release-automation-notifications@mozilla.com>',]
-releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>',]
+releaseConfig['ImportantRecipients'] = ['<release-drivers@mozilla.org>', '<mikeperry@torproject.org>']
 releaseConfig['AVVendorsRecipients'] = ['<av-vendor-release-announce@mozilla.org>',]
 releaseConfig['releaseTemplates']    = 'release_templates'
 releaseConfig['messagePrefix']       = '[release] '
@@ -20,56 +21,37 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '45.0b10'
+releaseConfig['version']             = '45.0esr'
 releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_45_0b10'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'FIREFOX_45_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '45.0b9': {
-        'appVersion': '45.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_45_0b9',
-    },
-
-    '45.0b8': {
-        'appVersion': '45.0',
+    '38.6.1esr': {
+        'appVersion': '38.6.1',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_45_0b8',
-    },
-
-    '45.0b6': {
-        'appVersion': '45.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_45_0b6',
+        'baseTag': 'FIREFOX_38_6_1esr',
     },
 
 }
-releaseConfig['ui_update_tests'] = False
 
-# win64 support
-releaseConfig['HACK_first_released_version'] = {'win64': '37.0b2'}
+releaseConfig['HACK_first_released_version'] = {'win64': "45.0"}
 
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
-releaseConfig['nextVersion']         = releaseConfig['version']
-releaseConfig['nextMilestone']       = releaseConfig['milestone']
+releaseConfig['nextAppVersion']      = '45.0esrpre'
+releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
-        'name': 'mozilla-beta',
-        'path': 'releases/mozilla-beta',
-        'revision': '3eaf4e1122e7',
+        'name': 'mozilla-esr45',
+        'path': 'releases/mozilla-esr45',
+        'revision': '8d63254ccdfc',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
-            },
-            'browser/config/version_display.txt': {
-                'version': releaseConfig['version'],
-                'nextVersion': releaseConfig['nextVersion']
             },
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
@@ -80,16 +62,16 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
-releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
+releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-release'
+releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-esr45'
 #  Support repositories
 releaseConfig['otherReposToTag']     = {
-    'build/compare-locales': 'RELEASE_AUTOMATION',
+    'build/compare-locales': 'RELEASE_0_9_5',
     'build/buildbot': 'production-0.8',
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64', 'win64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'macosx64', 'win32', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 
@@ -120,61 +102,55 @@ releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 releaseConfig['releaseNotesUrl']     = None
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
+releaseConfig['useBetaChannel']      = 1
 releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['mozconfigs']          = {
-    'linux': 'browser/config/mozconfigs/linux32/beta',
-    'linux64': 'browser/config/mozconfigs/linux64/beta',
-    'macosx64': 'browser/config/mozconfigs/macosx-universal/beta',
-    'win32': 'browser/config/mozconfigs/win32/beta',
-    'win64': 'browser/config/mozconfigs/win64/beta',
+    'linux': 'browser/config/mozconfigs/linux32/release',
+    'linux64': 'browser/config/mozconfigs/linux64/release',
+    'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
+    'win32': 'browser/config/mozconfigs/win32/release',
+    'win64': 'browser/config/mozconfigs/win64/release',
 }
-releaseConfig['source_mozconfig']    = 'browser/config/mozconfigs/linux64/source'
-releaseConfig['releaseChannel']        = 'beta'
+releaseConfig['releaseChannel']        = 'esr'
 releaseConfig['updateChannels'] = {
-    "beta": {
+    # ruleId needs to be updated with the ID from AUS
+    "esr": {
         "versionRegex": r"^.*$",
-        "ruleId": 32,
-        "patcherConfig": "mozBeta-branch-patcher2.cfg",
-        "localTestChannel": "beta-localtest",
-        "cdnTestChannel": "beta-cdntest",
+        "ruleId": "esr45",
+        "patcherConfig": "mozEsr45-branch-patcher2.cfg",
+        "localTestChannel": "esr-localtest",
+        "cdnTestChannel": "esr-cdntest",
         "verifyConfigs": {
-            "linux":  "mozBeta-firefox-linux.cfg",
-            "linux64":  "mozBeta-firefox-linux64.cfg",
-            "macosx64": "mozBeta-firefox-mac64.cfg",
-            "win32":  "mozBeta-firefox-win32.cfg",
-            "win64":  "mozBeta-firefox-win64.cfg",
+            "linux":  "mozilla-esr45-firefox-linux.cfg",
+            "linux64":  "mozilla-esr45-firefox-linux64.cfg",
+            "macosx64": "mozilla-esr45-firefox-mac64.cfg",
+            "win32":  "mozilla-esr45-firefox-win32.cfg",
+            "win64":  "mozilla-esr45-firefox-win64.cfg",
         },
         "testChannels": {
-            "beta-cdntest": {
-                "ruleId": 45,
+            "esr-localtest": {
+                "ruleId": "esr45-localtest",
             },
-            "beta-localtest": {
-                "ruleId": 25,
+            "esr-cdntest": {
+                "ruleId": "esr45-cdntest",
             },
-        }
-    }
+        },
+    },
 }
 
+
 # Partner repack configuration
-releaseConfig['doPartnerRepacks'] = True
-releaseConfig['partnerRepackPlatforms'] = releaseConfig['l10nPlatforms']
-releaseConfig['partnerRepackConfig'] = {
-    'use_mozharness': True,
-    'script': 'scripts/desktop_partner_repacks.py',
-    'config_file': 'partner_repacks/release_mozilla-release_desktop.py',
-    's3cfg': '/builds/partners-s3cfg',
-}
+releaseConfig['doPartnerRepacks']    = False
+releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
-releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_beta.py'
+releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
 # Misc configuration
-releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-
 releaseConfig['bouncer_aliases'] = {
-    'Firefox-%(version)s': 'firefox-beta-latest',
-    'Firefox-%(version)s-stub': 'firefox-beta-stub',
+    'Firefox-%(version)s': 'firefox-esr-latest',
 }

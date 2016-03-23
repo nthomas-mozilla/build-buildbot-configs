@@ -2935,6 +2935,9 @@ BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
+    # only one l10n builder
+    if BRANCHES['try']['platforms'][platform].get('mozharness_desktop_l10n', {}).get('l10n_chunks'):
+       BRANCHES['try']['platforms'][platform]['mozharness_desktop_l10n']['l10n_chunks'] = 1
 del BRANCHES['try']['platforms']['linux64-av']
 
 ######## generic branch configs

@@ -23,29 +23,35 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.6.0'
-releaseConfig['appVersion']          = '38.6.0'
+releaseConfig['version']             = '45.0'
+releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_6_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_0'
 releaseConfig['partialUpdates']      = {
 
-    '38.4.0': {
-        'appVersion': '38.4.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_38_4_0',
-    },
-
-    '38.5.0': {
-        'appVersion': '38.5.0',
+    '38.6.0': {
+        'appVersion': '38.6.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_38_5_0',
+        'baseTag': 'THUNDERBIRD_38_6_0',
     },
 
-    '38.5.1': {
-        'appVersion': '38.5.1',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_38_5_1',
+    '38.7.0': {
+        'appVersion': '38.7.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_7_0',
+    },
+
+    '38.7.1': {
+        'appVersion': '38.7.1',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_7_1',
+    },
+
+    '38.7.2': {
+        'appVersion': '38.7.2',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_7_2',
     },
 
 }
@@ -57,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr45',
         'path': 'releases/comm-esr45',
-        'revision': '3d8ac06bcccc',
+        'revision': 'ba394d3e413c',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -69,7 +75,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': '9dbd3e2909e1',
+        'revision': '983d1ccaea8f',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -131,7 +137,7 @@ releaseConfig['updateChannels'] = {
     # ruleId needs to be updated with the ID from AUS
     "release": {
         "versionRegex": r"^.*$",
-        "ruleId": 170,
+        "ruleId": 332,
         "patcherConfig": "mozEsr45-thunderbird-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",
@@ -143,10 +149,10 @@ releaseConfig['updateChannels'] = {
         },
         "testChannels": {
             "release-localtest": {
-                "ruleId": 171,
+                "ruleId": 333,
             },
             "release-cdntest": {
-                "ruleId": 172,
+                "ruleId": 334,
             },
         },
     },

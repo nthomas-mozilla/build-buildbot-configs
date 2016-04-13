@@ -23,14 +23,12 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
                   "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
-                  "android-2-3-armv7-api9": ("android-api-9", ["ubuntu64_vm_mobile", "ubuntu64_vm_large"]),
                   "android-4-3-armv7-api11": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
                   "android-4-3-armv7-api15": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-# platform_exclusions = ['android-4-3-armv7-api11']
-platform_exclusions = []
+platform_exclusions = ["android-2-3-armv7-api9"]
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
@@ -46,7 +44,8 @@ for sp in seta_platforms:
 def wfetch(url, retries=5):
     while True:
         try:
-            return urllib2.urlopen(url, timeout=30)
+            response = urllib2.urlopen(url, timeout=30)
+            return json.loads(response.read())
         except urllib2.HTTPError, e:
             print("Failed to fetch '%s': %s" % (url, str(e)))
         except urllib2.URLError, e:
@@ -55,6 +54,8 @@ def wfetch(url, retries=5):
             print("Time out accessing %s: %s" % (url, str(e)))
         except socket.error, e:
             print("Socket error when accessing %s: %s" % (url, str(e)))
+        except ValueError, e:
+            print("JSON parsing error %s: %s" % (url, str(e)))
         if retries < 1:
             raise Exception("Could not fetch url '%s'" % url)
         retries -= 1
@@ -68,8 +69,7 @@ def get_seta_platforms(branch, platform_filter):
         return []
 
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
-    response = wfetch(url)
-    data = json.loads(response.read())
+    data = wfetch(url)
     c['jobtypes'] = data.get('jobtypes', None)
     platforms = []
     for p in c['jobtypes'][today]:

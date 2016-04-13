@@ -129,9 +129,6 @@ GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
-SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
-SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
-SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
 GLOBAL_ENV = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -192,11 +189,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -260,6 +252,7 @@ PLATFORM_VARS = {
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
         },
@@ -314,12 +307,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -362,6 +349,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -427,12 +415,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -475,6 +457,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -529,12 +512,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-tsan',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -577,6 +554,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -631,12 +609,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan-debug',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -679,6 +651,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -733,12 +706,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-st-an-debug',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -781,6 +748,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -883,12 +851,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -927,6 +889,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -979,12 +942,6 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
@@ -1057,11 +1014,6 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_rsa",
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
@@ -1130,12 +1082,6 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'win64',
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
@@ -1261,6 +1207,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -1348,6 +1295,7 @@ PLATFORM_VARS = {
                 ('/builds/gapi.data', '/builds/gapi.data'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
@@ -1676,6 +1624,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -1685,11 +1634,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -1764,6 +1708,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -1773,11 +1718,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -1852,6 +1792,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -1861,11 +1802,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -1937,6 +1873,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -1946,11 +1883,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -2021,6 +1953,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -2030,11 +1963,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -2104,6 +2032,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -2113,11 +2042,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -2187,6 +2111,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
@@ -2196,11 +2121,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -2432,13 +2352,6 @@ BRANCHES = {
         'gecko_version': 44,
         'platforms': {},
     },
-    'b2g-ota': {
-        'merge_builds': False,
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 45,
-        'platforms': {},
-    },
     'try': {
         'branch_projects': ['spidermonkey_try'],
         # The following platforms are not part of the default set,
@@ -2581,11 +2494,8 @@ BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['enable_hsts_update'] = True
 BRANCHES['mozilla-central']['enable_hpkp_update'] = True
-BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['android-x86']['updates_enabled'] = True
-BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['updates_enabled'] = True
-BRANCHES['mozilla-central']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-central']['platforms']['android-api-15']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -2625,12 +2535,12 @@ BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
-BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-# TODO - remove android-api-11 line when gecko 46 reaches m-r
-BRANCHES['mozilla-release']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
-BRANCHES['mozilla-release']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
+# Release promotion related
+BRANCHES['mozilla-release']['release_channel_mappings'] = [
+    [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
+    [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
+]
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2667,9 +2577,6 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
-BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
-BRANCHES['mozilla-beta']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-BRANCHES['mozilla-beta']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-9-debug']['enable_dep'] = True
@@ -2681,10 +2588,26 @@ BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-beta']['enable_release_promotion'] = True
 # used by process/release.py
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
-BRANCHES['mozilla-beta']['bouncer_submitter_config'] = "releases/bouncer_firefox_beta.py"
-BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
-BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = "releases/postrelease_beta.py"
-BRANCHES['mozilla-beta']['updates_config'] = "releases/updates_date.py"
+BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
+    "firefox": "releases/bouncer_firefox_beta.py",
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
+    "firefox": 'releases/postrelease_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
+    "firefox": 'releases/bouncer_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-beta']['updates_config'] = {
+    "firefox": 'releases/updates_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['update_verify_chunks'] = 6
 BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-beta']['stage_product'] = {
@@ -2699,9 +2622,10 @@ BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release
 # used by releasetasks
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
-BRANCHES['mozilla-beta']['push_to_releases_automatic'] = False
-BRANCHES['mozilla-beta']['release_channels'] = ("beta",)
+BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
+BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
     # TODO - add fennec support
@@ -2709,6 +2633,18 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
 }
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repack_config'] = {
+    "firefox": {
+        "script_name": "scripts/desktop_partner_repacks.py",
+        "extra_args": [
+            "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+            "--s3cfg", "/builds/partners-s3cfg",
+        ],
+    },
+    # TODO - add fennec support
+    # 'fennec': {}
+}
 ###
 
 ######## mozilla-aurora
@@ -2755,11 +2691,8 @@ BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
 BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
 BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
-BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['updates_enabled'] = True
-BRANCHES['mozilla-aurora']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-aurora']['platforms']['android-api-15']['updates_enabled'] = True
-BRANCHES['mozilla-aurora']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['updates_enabled'] = True
 # aurora nightlies should use our nightly signing server
 BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -2851,33 +2784,6 @@ BRANCHES['mozilla-b2g44_v2_5']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g44_v2_5']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g44_v2_5']['enabled_products'] = ['firefox']
 
-
-######## b2g-ota
-BRANCHES['b2g-ota']['repo_path'] = 'releases/b2g-ota'
-BRANCHES['b2g-ota']['update_channel'] = 'b2g-ota'
-BRANCHES['b2g-ota']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['b2g-ota']['enable_perproduct_builds'] = True
-BRANCHES['b2g-ota']['start_hour'] = [3]
-BRANCHES['b2g-ota']['start_minute'] = [45]
-BRANCHES['b2g-ota']['pgo_platforms'] = []
-BRANCHES['b2g-ota']['enable_mac_a11y'] = True
-BRANCHES['b2g-ota']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['b2g-ota']['enable_l10n'] = False
-BRANCHES['b2g-ota']['enable_l10n_onchange'] = False
-BRANCHES['b2g-ota']['l10nNightlyUpdate'] = False
-BRANCHES['b2g-ota']['l10n_platforms'] = ['linux', 'linux64',
-                                                    'win32', 'macosx64']
-BRANCHES['b2g-ota']['l10nDatedDirs'] = True
-BRANCHES['b2g-ota']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-b2g-ota'
-BRANCHES['b2g-ota']['enable_nightly'] = False
-BRANCHES['b2g-ota']['create_partial'] = False
-BRANCHES['b2g-ota']['enable_blocklist_update'] = False
-BRANCHES['b2g-ota']['enable_hsts_update'] = True
-BRANCHES['b2g-ota']['enable_hpkp_update'] = True
-BRANCHES['b2g-ota']['enable_valgrind'] = False
-BRANCHES['b2g-ota']['enabled_products'] = ['firefox']
 
 ######## try
 # Try-specific configs
@@ -2973,24 +2879,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/'
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
-    if 'linux' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'android-api-9' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9-' + branch
-    # TODO - project branch could be based on any gecko num. we should remove this once api-11 is
-    # gone from all release branches
-    if 'android-api-11' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11-' + branch
-    if 'android-api-15' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15-' + branch
-    if 'android-x86' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86-' + branch
-    if 'linux64' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
-    if 'win32' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'macosx64' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # Platform-specific defaults/interpretation
     for platform in BRANCHES[branch]['platforms']:
         # point to the mozconfigs, default is generic
@@ -3091,6 +2979,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
 for name, branch in items_before(BRANCHES, 'gecko_version', 46):
     for platform in branch['platforms'].keys():
         if 'api-15' in platform:
+            del branch['platforms'][platform]
+
+# Bug 1250999 - releng - releng work for dropping api 9-10
+# disable api-9-10 mobile builds on >= 48 based branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
+    for platform in branch['platforms'].keys():
+        if 'api-9' in platform:
             del branch['platforms'][platform]
 
 if __name__ == "__main__":

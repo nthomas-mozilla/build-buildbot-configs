@@ -2810,6 +2810,7 @@ BRANCHES['try']['enable_l10n'] = True
 BRANCHES['try']['desktop_mozharness_repacks_enabled'] = True
 BRANCHES['try']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64',
                                      'win64']
+BRANCHES['try']['enable_l10n_dep_scheduler'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
